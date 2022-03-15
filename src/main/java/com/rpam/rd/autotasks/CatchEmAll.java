@@ -5,7 +5,9 @@ import java.io.IOException;
 
 public class CatchEmAll {
 
-    static Exception exception = new FileNotFoundException();
+    public static final String RESOURCE_IS_MISSING = "Resource is missing";
+    public static final String RESOURCE_ERROR = "Resource error";
+    public static Exception exception = new FileNotFoundException();
 
     public static void riskyMethod() throws Exception {
         throw exception;
@@ -15,9 +17,9 @@ public class CatchEmAll {
         try {
             riskyMethod();
         } catch (FileNotFoundException e) {
-            throw new IllegalArgumentException("Resource is missing", e);
+            throw new IllegalArgumentException(RESOURCE_IS_MISSING, e);
         } catch (IOException e) {
-            throw new IllegalArgumentException("Resource error", e);
+            throw new IllegalArgumentException(RESOURCE_ERROR, e);
         } catch (ArithmeticException | NumberFormatException e) {
             System.err.print(e.getMessage());
         }
